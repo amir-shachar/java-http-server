@@ -10,8 +10,8 @@ public class MainClient
         {
             int simulations = Integer.valueOf(keyboard.nextLine());
             System.out.println("Starting to attack server");
-            System.out.println("Press any key to stop!");
-            ClientController controller = new ClientController(simulations);
+            System.out.println("Press Enter to stop!");
+            ClientAttackSimulator controller = new ClientAttackSimulator(simulations);
             if(keyboard.nextLine() != null)
             {
                 controller.shutdown();

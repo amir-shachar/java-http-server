@@ -8,13 +8,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ClientController
+public class ClientAttackSimulator
 {
     private boolean contactUrl = true;
     private int simulations;
     private ExecutorService executor;
 
-    public ClientController(int simulations)
+    public ClientAttackSimulator(int simulations)
     {
         this.simulations = simulations;
         startServerCommunication();
@@ -56,7 +56,7 @@ public class ClientController
     private void sendRequest(String userId) throws IOException
     {
         HttpClient client = HttpClientBuilder.create().build();
-        HttpResponse response = client.execute(new HttpGet("http://localhost:8001/amir/?clientId=" + userId));
+        HttpResponse response = client.execute(new HttpGet("http://localhost:8001/ermetic/?clientId=" + userId));
         int statusCode = response.getStatusLine().getStatusCode();
         System.out.println(statusCode + " id: " + userId);
     }

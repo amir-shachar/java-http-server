@@ -12,12 +12,11 @@ public class MainClient
             System.out.println("Starting to attack server");
             System.out.println("Press Enter to stop!");
             ClientAttackSimulator controller = new ClientAttackSimulator(simulations);
-            if(keyboard.nextLine() != null)
+            if (keyboard.nextLine() != null)
             {
                 controller.shutdown();
             }
-        }
-        catch (NumberFormatException e)
+        } catch (NumberFormatException e)
         {
             System.out.println("next time type a number!");
         }

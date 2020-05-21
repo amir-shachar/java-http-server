@@ -1,5 +1,6 @@
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
@@ -11,17 +12,14 @@ public class MyHttpHandler implements HttpHandler
 
     public void handle(HttpExchange httpExchange) throws IOException
     {
-
         String clientId = extractClientId(httpExchange);
-        if(preventDOSAttack(clientId))
+        if (preventDOSAttack(clientId))
         {
             String requestParamValue = null;
 
             if ("GET".equals(httpExchange.getRequestMethod()))
             {
-
                 requestParamValue = extractClientId(httpExchange);
-
             }
             handleResponse(httpExchange, requestParamValue);
         }
@@ -35,16 +33,16 @@ public class MyHttpHandler implements HttpHandler
     private boolean preventDOSAttack(String clientId)
     {
         boolean isValid = true;
-        if(entryMap.containsKey(clientId))
+        if (entryMap.containsKey(clientId))
         {
             UserSiteVisitDetails userVisit = entryMap.get(clientId);
-            if (userVisit.hasTimeWindowExpired() )
+            if (userVisit.hasTimeWindowExpired())
             {
                 userVisit.startWindow();
             }
             else
             {
-                if(userVisit.hasExceededVisits())
+                if (userVisit.hasExceededVisits())
                 {
                     isValid = false;
                 }
@@ -64,14 +62,14 @@ public class MyHttpHandler implements HttpHandler
     private void sendServiceUnavailable(HttpExchange httpExchange) throws IOException
     {
         OutputStream outputStream = httpExchange.getResponseBody();
-        String html  = "<html>" +
+        String html = "<html>" +
                 "<body>" +
                 "<h1>" +
                 "Service Denied! " +
                 "</h1>" +
                 "</body>" +
                 "</html>";
-        httpExchange.sendResponseHeaders(503,html.length());
+        httpExchange.sendResponseHeaders(503, html.length());
         outputStream.write(html.getBytes());
         outputStream.flush();
         outputStream.close();

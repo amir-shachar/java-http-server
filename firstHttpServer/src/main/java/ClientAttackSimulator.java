@@ -1,4 +1,4 @@
-import  org.apache.http.HttpResponse;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -23,7 +23,7 @@ public class ClientAttackSimulator
     private void startServerCommunication()
     {
         executor = Executors.newFixedThreadPool(simulations);
-        for(int i =1 ; i<= simulations; i++)
+        for (int i = 1; i <= simulations; i++)
         {
             executor.submit(getSimulatedClientRunnable(String.valueOf(i)));
         }
@@ -32,7 +32,7 @@ public class ClientAttackSimulator
     private Runnable getSimulatedClientRunnable(String s)
     {
         return () -> {
-            while(contactUrl)
+            while (contactUrl)
             {
                 try
                 {
@@ -44,7 +44,7 @@ public class ClientAttackSimulator
 
                 try
                 {
-                    Thread.sleep((int)(1000*Math.random()));
+                    Thread.sleep((int) (1000 * Math.random()));
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -60,8 +60,6 @@ public class ClientAttackSimulator
         int statusCode = response.getStatusLine().getStatusCode();
         System.out.println(statusCode + " id: " + userId);
     }
-
-
 
     public void shutdown() throws InterruptedException
     {

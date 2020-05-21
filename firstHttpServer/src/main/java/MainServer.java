@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.logging.Logger;
 
 public class MainServer
 {
@@ -17,6 +16,4 @@ public class MainServer
         server.setExecutor(executor);
         server.start();
     }
-
-
 }

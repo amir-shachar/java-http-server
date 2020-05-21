@@ -95,9 +95,9 @@ public class MyHttpHandler implements HttpHandler
                 "</h1>" +
                 "</body>" +
                 "</html>";
-        String htmlResponse = htmlBuilder;
-        httpExchange.sendResponseHeaders(200, htmlResponse.length());
-        outputStream.write(htmlResponse.getBytes());
+
+        httpExchange.sendResponseHeaders(200, htmlBuilder.length());
+        outputStream.write(htmlBuilder.getBytes());
         outputStream.flush();
         outputStream.close();
 

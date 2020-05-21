@@ -4,6 +4,7 @@ public class UserSiteVisitDetails
     private int visitsInWindow;
     public static final int VISIT_LIMIT = 5;
     public static final long WINDOW_IN_MILIS =5000;
+
     public UserSiteVisitDetails()
     {
         startWindow();
